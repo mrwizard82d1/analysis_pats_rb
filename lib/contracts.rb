@@ -9,10 +9,10 @@ module SimpleContract
     attr_accessor :party, :amount, :price, :instrument
 
     def initialize(party, amount, price, instrument)
-      self.party = party
-      self.amount = amount
-      self.price = price
-      self.instrument = instrument
+      @party = party
+      @amount = amount
+      @price = price
+      @instrument = instrument
     end
   end
 
@@ -28,3 +28,21 @@ module SimpleContract
     end
   end
 end
+
+
+module ShortLongContract
+  class Contract
+    attr_accessor :short_party, :long_party, :amount, :price, :instrument
+
+    def initialize(short_party, long_party, amount, price, instrument)
+      @short_party = short_party
+      @long_party = long_party
+      @amount = amount
+      @price = price
+      @instrument = instrument
+    end
+  end
+
+end
+
+
