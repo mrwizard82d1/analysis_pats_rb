@@ -1,32 +1,54 @@
 module Contract
-  class Instrument
-  end
-end
-
-
-module SimpleContract
   class Contract
-    attr_accessor :party, :amount, :price, :instrument
-
-    def initialize(party, amount, price, instrument)
-      @party = party
+    attr_accessor :amount, :price, :instrument
+    
+    def initialize(amount, price, instrument)
       @amount = amount
       @price = price
       @instrument = instrument
     end
   end
 
-  class Long < Contract
-    def initialize(party, amount, price, instrument)
-      super(party, amount, price, instrument)
+  module Simple
+
+    class SimpleBase < Contract
+      attr_accessor :party
+
+      def initialize(party, amount, price, instrument)
+        super(amount, price, instrument)
+        @party = party
+      end
+    end
+
+    class Long < SimpleBase
+      def initialize(party, amount, price, instrument)
+        super(party, amount, price, instrument)
+      end
+    end
+
+    class Short < SimpleBase
+      def initialize(party, amount, price, instrument)
+        super(party, amount, price, instrument)
+      end
     end
   end
 
-  class Short < Contract
-    def initialize(party, amount, price, instrument)
-      super(party, amount, price, instrument)
+  class ShortLong < Contract
+    attr_accessor :short_party, :long_party
+
+    def initialize(short_party, long_party, amount, price, instrument)
+      super(amount, price, instrument)
+      @short_party = short_party
+      @long_party = long_party
     end
   end
+
+  class Instrument
+  end
+end
+
+
+module SimpleContract
 end
 
 

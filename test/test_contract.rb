@@ -21,8 +21,8 @@ end
 
 class TestShortLongContract < TestContract
   def test_ctor
-    contract = ShortLongContract::Contract.new(short_party, long_party,
-                                               amount, price, instrument)
+    contract = Contract::ShortLong.new(short_party, long_party,
+                                       amount, price, instrument)
 
     assert_equal(short_party, contract.short_party)
     assert_equal(long_party, contract.long_party)
@@ -36,14 +36,14 @@ end
 class TestSimpleContract < TestContract
   def test_ctor
     long_contract =
-      SimpleContract::Long.new(party, amount, price, instrument)
+      Contract::Simple::Long.new(party, amount, price, instrument)
     assert_equal(party, long_contract.party)
     assert_equal(amount, long_contract.amount)
     assert_equal(price, long_contract.price)
     assert_equal(instrument, long_contract.instrument)
 
     short_contract =
-      SimpleContract::Short.new(party, amount, price, instrument)
+      Contract::Simple::Short.new(party, amount, price, instrument)
     assert_equal(party, short_contract.party)
     assert_equal(amount, short_contract.amount)
     assert_equal(price, short_contract.price)
